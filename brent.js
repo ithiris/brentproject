@@ -15,31 +15,19 @@ fs.readFile(jsonFile, 'utf8', function (err, jsonfile) {
 })
 
 function readSourceFolderFiles(sourceFolder) {
-    var sourceallfiles = "";
-    fs.readdir(sourceFolder, 'utf8', function (err, files) {
+    fs.readdir(sourceFolder, function(err, filenames) {
         if (err) {
-
-            console.log(arguments);
-            return
+           console.log("error on fetch directory file")
+            return;
         }
-
-
-        for (var i = 0; i < files.length; i++) {
-
-            var filePath = path.join(sourceFolder, files[i]);
-
-
-            fs.readFile(filePath, 'utf8', function (err, filedata) {
+        filenames.forEach(function(filename) {
+            fs.readFile(sourceFolder + filename, 'utf-8', function(err, content) {
                 if (err) {
-
-                    console.log('error on fetching SourceFile!');
-                    return
+                    console.log(err)
+                    return;
                 }
 
-                sourceallfiles += filedata + "\n";
-                cb(sourceallfiles);
             });
-        }
-
+        });
     });
 }
