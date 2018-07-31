@@ -11,15 +11,15 @@ fs.readFile(jsonFile, 'utf8', function (err, jsonfile) {
 
     var strToJson = JSON.parse(jsonfile);
     var sourceFolder = strToJson.source;
-    readSourceFolderFiles ()
+    readSourceFolderFiles (sourceFolder)
 })
 
-function readSourceFolderFiles(sourceFolder,files) {
+function readSourceFolderFiles(sourceFolder) {
     var sourceallfiles = "";
     fs.readdir(sourceFolder, 'utf8', function (err, files) {
         if (err) {
 
-            console.log('error on fetching directoryFile!');
+            console.log(arguments);
             return
         }
 

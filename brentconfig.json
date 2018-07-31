@@ -1,6 +1,6 @@
 {
   "name":"brentProject",
-  "source":"Src",
+  "source":"src",
   "destination":"dist",
   "bundle":"bundle"
 
