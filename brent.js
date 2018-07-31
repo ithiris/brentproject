@@ -11,21 +11,27 @@ fs.readFile(jsonFile, 'utf8', function (err, jsonfile) {
 
     var strToJson = JSON.parse(jsonfile);
     var sourceFolder = strToJson.source;
-    readSourceFolderFiles (sourceFolder)
+    readSourceFolderFiles(sourceFolder)
 })
-
 function readSourceFolderFiles(sourceFolder) {
-    fs.readdir(sourceFolder, function(err, filenames) {
+
+    fs.readdir(sourceFolder, function (err, filenames) {
         if (err) {
-           console.log("error on fetch directory file")
+            console.log("error on fetch directory file")
             return;
         }
-        filenames.forEach(function(filename) {
-            fs.readFile(sourceFolder + filename, 'utf-8', function(err, content) {
+        filenames.forEach(function (filenames) {
+
+            let filepath = path.join(sourceFolder, filenames)
+            console.log(filepath)
+
+            fs.readFile(filepath, 'utf8', function (err, filenames) {
                 if (err) {
-                    console.log(err)
-                    return;
+
+                    console.log(err);
+                    return
                 }
+
 
             });
         });
