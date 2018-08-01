@@ -2,6 +2,6 @@
   "name":"brentProject",
   "source":"src",
   "destination":"dist",
-  "bundle":"bundle"
+  "bundleName":"bundle"
 
 }
