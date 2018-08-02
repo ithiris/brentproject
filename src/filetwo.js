@@ -1,1 +1,1 @@
-helloindia
+var b=20-10
