@@ -1,6 +1,8 @@
 var fs = require('fs');
 var path = require("path");
 var http = require("http");
+var url=require("url");
+
 var JsonObjFile = 'brentconfig.json';
 
 fs.readFile(JsonObjFile, 'utf8', function (err, JsonObjFile) {
@@ -15,24 +17,24 @@ fs.readFile(JsonObjFile, 'utf8', function (err, JsonObjFile) {
     var destinationFolder = strToJson.destination;
     var bundleFileJs = strToJson.bundleName + ".js";
     var distFilePath = path.join(destinationFolder, bundleFileJs);
-
+console.log(distFilePath)
     var htmlfile= 'index.html';
     var distPathCreateHtml =path.join(destinationFolder,htmlfile)
 
     readSourceFolderFiles(sourceFolder,function (filenames) {
 
         createDistFolder(destinationFolder,distFilePath,distPathCreateHtml,function () {
-            
+
             writefile(distFilePath,filenames);
-        readHtmlFile(htmlfile,function (data) {
-            var produceHtml=addScriptIntoHtml(data,bundleFileJs)
+        readHtmlFile(htmlfile,function (html) {
+            var produceHtml=addScriptIntoHtml(html,bundleFileJs)
             writefile(distPathCreateHtml,produceHtml);
             console.log(produceHtml)
         })
     })
 
     })
-
+    createServer(distFilePath)
 })
 
 function readSourceFolderFiles(sourceFolder,cb) {
@@ -104,17 +106,14 @@ function writefile(distFilePath,filenames) {
 
 }
 function readHtmlFile(htmlfile,cb){
-fs.readFile(htmlfile, 'utf8', function (err,data) {
-
-
-
+fs.readFile(htmlfile, 'utf8', function (err,html) {
     if (err) {
 
         console.log(err);
         return
     }
 
-    cb(data)
+    cb(html)
 
 
 
@@ -127,4 +126,28 @@ function addScriptIntoHtml(htmlString,bundleFileJs) {
     return splitTheHtml;
 
 }
+
+
+
+function createServer(distFilePath) {
+    var server = http.createServer(function (request, response) {
+        var pathname = url.parse(request.url).pathname;
+        console.log("Request for " + pathname + " received.");
+
+        response.writeHead(200);
+
+        if (pathname == "/") {
+            html = fs.readFileSync(distFilePath, "utf8");
+            response.write(html);
+        } else if (pathname =="/") {
+            bundle = fs.readFileSync(distFilePath, "utf8");
+            response.write(bundle);
+        }
+        response.end();
+    });
+    server.listen(3000);
+
+    console.log("Listening to server on 3000...");
+}
+
 

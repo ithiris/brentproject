@@ -1,21 +1,15 @@
-var c=10*20
+var a="helloworld"
 
-var b=20-10
+console.log(a)
+var c="helloindia"
 
-
-
-
-var name ="myname is ithiris";
+console.log("c")
 
 
 
-console.log(name.split('ithiris'))
 
-var a= 10 +20
 
-function add(num,num2) {
-    return num +num2
-}
 
-console.log(add(2,4,))
-connsole.log(add(4,))
+var b="welcomeback"
+
+console.log(b)

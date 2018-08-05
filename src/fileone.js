@@ -1,8 +1,3 @@
-var a= 10 +20
+var a="helloworld"
 
-function add(num,num2) {
-    return num +num2
-}
-
-console.log(add(2,4,))
-connsole.log(add(4,))
+console.log(a)

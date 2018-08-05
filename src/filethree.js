@@ -1,1 +1,3 @@
-var c=10*20
+var b="welcomeback"
+
+console.log(b)

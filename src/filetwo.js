@@ -1,10 +1,8 @@
-var b=20-10
+var c="helloindia"
+
+console.log("c")
 
 
 
 
-var name ="myname is ithiris";
 
-
-
-console.log(name.split('ithiris'))
