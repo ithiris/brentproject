@@ -1,3 +1,2 @@
-var b="welcomeback"
+welcomeback
 
-console.log(b)

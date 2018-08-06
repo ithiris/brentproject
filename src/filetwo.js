@@ -1,6 +1,5 @@
-var c="helloindia"
+helloindia
 
-console.log("c")
 
 
 
